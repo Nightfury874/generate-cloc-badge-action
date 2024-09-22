@@ -2,6 +2,9 @@
 
 This GitHub Action generates a lines-of-code badge for your repository using [`cloc`](https://github.com/AlDanial/cloc) and commits it to a specified branch, typically `gh-pages`, which can be served by GitHub Pages. The badge can then be displayed in your repository's `README.md` file.
 
+Something like this:
+![Total Lines](https://img.shields.io/endpoint?url=https://Nightfury874.github.io/generate-cloc-badge-action/cloc.json&style=for-the-badge)
+
 ## Features
 
 - Automatically counts the total lines of code in your repository.
