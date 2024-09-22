@@ -68,9 +68,27 @@ Add the following markdown snippet to your ```README.md``` where you want the ba
 
 ```markdown
 
-![Total Lines](https://img.shields.io/endpoint?url=https://your-username.github.io/your-repo-name/cloc.json)
+![Total Lines](https://img.shields.io/endpoint?url=https://your-username.github.io/your-repo-name/cloc.json&style=for-the-badge)
 
 ```
+
+
+### **Changing the target branch**
+
+If you want to use a branch other than gh-pages, specify it in the workflow file and set up GitHub Pages accordingly.
+
+```yaml
+- name: Generate CLOC Badge
+  uses: your-username/generate-cloc-badge-action@v1.1.0
+  with:
+    github_token: ${{ secrets.GITHUB_TOKEN }}
+    branch: custom-branch-name
+
+```
+Remember to change the source to `custom-branch-name` in your repository settings/pages
+
+### **Contributing**
+Contributions are welcome! If you find a bug or have a feature request, please open an issue or submit a pull request.
 
 
 

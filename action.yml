@@ -2,7 +2,7 @@
 
 name: 'Generate CLOC Badge'
 description: 'An action to generate a lines-of-code badge using cloc and Shields.io'
-author: 'Your Name <your.email@example.com>'
+author: 'Nihar Jyoti Basisth <nihar.basisth@agrijod.in>'
 
 inputs:
   github_token:
