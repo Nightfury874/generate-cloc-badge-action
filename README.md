@@ -48,9 +48,29 @@ Create or update a workflow file (e.g., `.github/workflows/cloc-badge.yml`) in y
         with:
             github_token: ${{ secrets.GITHUB_TOKEN }}
             branch: gh-pages  # Optional, defaults to 'gh-pages' if omitted
-        ```
+```
 
 
+### **Set Up GitHub Pages**
+* Navigate to Repository Settings:
+
+- Go to your repository on GitHub, click on the Settings tab.
+
+* Configure GitHub Pages:
+
+- In the Pages section (may be under "Code and automation" > "Pages"), set the source to the branch specified in your workflow (e.g., gh-pages).
+- Select the root (/) directory.
+- Click Save.
+
+### **Step 3: Add the Badge**
+
+Add the following markdown snippet to your ```README.md``` where you want the badge to appear:
+
+```markdown
+
+![Total Lines](https://img.shields.io/endpoint?url=https://your-username.github.io/your-repo-name/cloc.json)
+
+```
 
 
 
