@@ -28,26 +28,28 @@ Create or update a workflow file (e.g., `.github/workflows/cloc-badge.yml`) in y
 ```yaml
     name: Generate CLOC Badge
 
-    on:
-    push:
-        branches: [ main, master ]
-    workflow_dispatch:
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
 
-    permissions:
-    contents: write
+permissions:
+  contents: write
 
-    jobs:
-    build:
-        runs-on: ubuntu-latest
+jobs:
+  build:
+    runs-on: ubuntu-latest
 
-        steps:
-        - uses: actions/checkout@v3
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
 
-        - name: Generate CLOC Badge
+      - name: Generate CLOC Badge
         uses: your-username/generate-cloc-badge-action@v1.1.0
         with:
-            github_token: ${{ secrets.GITHUB_TOKEN }}
-            branch: gh-pages  # Optional, defaults to 'gh-pages' if omitted
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: gh-pages  # Optional, defaults to 'gh-pages' if omitted
+
 ```
 
 
