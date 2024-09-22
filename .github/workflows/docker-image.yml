@@ -1,0 +1,23 @@
+name: Generate CLOC Badge
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Generate CLOC Badge
+        uses: Nightfury874/generate-cloc-badge-action@version-1.0.1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: gh-pages  # Optional, defaults to 'gh-pages' if omitted
