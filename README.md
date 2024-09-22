@@ -19,3 +19,7 @@ This GitHub Action generates a lines-of-code badge for your repository using `cl
     github_token: ${{ secrets.GITHUB_TOKEN }}
     branch: gh-pages
 
+
+```
+
+![Total Lines](https://img.shields.io/endpoint?url=https://Nightfury874.github.io/generate-cloc-badge-action//cloc.json)
