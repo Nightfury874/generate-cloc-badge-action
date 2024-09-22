@@ -1,6 +1,9 @@
+# action.yml
+
 name: 'Generate CLOC Badge'
 description: 'An action to generate a lines-of-code badge using cloc and Shields.io'
-author: 'Nihar Basisth <nihar.basisth@agrijod.in>'
+author: 'Your Name <your.email@example.com>'
+
 inputs:
   github_token:
     description: 'GitHub token for authentication'
@@ -9,10 +12,14 @@ inputs:
     description: 'The branch to commit the badge to'
     required: false
     default: 'gh-pages'
-outputs: {}
+
 runs:
   using: 'docker'
   image: 'Dockerfile'
+  args:
+    - ${{ inputs.github_token }}
+    - ${{ inputs.branch }}
+
 branding:
   icon: 'code'
   color: 'blue'

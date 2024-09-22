@@ -4,21 +4,32 @@ set -e
 # Input variables
 GITHUB_TOKEN="$1"
 TARGET_BRANCH="$2"
+GITHUB_REPOSITORY="${GITHUB_REPOSITORY}"
 
 # Configure git
 git config --global user.email "github-actions[bot]@users.noreply.github.com"
 git config --global user.name "github-actions[bot]"
 
-# Install dependencies
-apt-get update
-apt-get install -y cloc jq
-
 # Generate cloc.json in /tmp
 cloc --json . > /tmp/cloc_temp.json
 
-# Fetch all branches and switch to target branch
+# Fetch all branches
 git fetch origin
-git checkout -B "$TARGET_BRANCH" origin/"$TARGET_BRANCH" || git checkout -b "$TARGET_BRANCH"
+
+# Check if target branch exists
+if git ls-remote --heads origin "$TARGET_BRANCH" | grep -q "$TARGET_BRANCH"; then
+    echo "Branch '$TARGET_BRANCH' exists. Checking it out."
+    git checkout "$TARGET_BRANCH"
+    git pull origin "$TARGET_BRANCH"
+else
+    echo "Branch '$TARGET_BRANCH' does not exist. Creating it."
+    git checkout --orphan "$TARGET_BRANCH"
+    git rm -rf .
+    echo "# $TARGET_BRANCH branch" > README.md
+    git add README.md
+    git commit -m "Initialize $TARGET_BRANCH branch"
+    git push "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" "$TARGET_BRANCH"
+fi
 
 # Copy cloc.json to working directory
 cp /tmp/cloc_temp.json cloc.json
@@ -37,4 +48,4 @@ EOF
 # Commit and push changes
 git add cloc.json
 git commit -m "Update cloc data" || echo "No changes to commit"
-git push origin "$TARGET_BRANCH"
+git push "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" "$TARGET_BRANCH"
