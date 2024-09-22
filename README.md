@@ -51,7 +51,7 @@ Create or update a workflow file (e.g., `.github/workflows/cloc-badge.yml`) in y
 ```
 
 
-### **Set Up GitHub Pages**
+### **Step 2: Set Up GitHub Pages**
 * Navigate to Repository Settings:
 
 - Go to your repository on GitHub, click on the Settings tab.
